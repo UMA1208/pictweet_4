@@ -30,6 +30,12 @@ class TweetsController < ApplicationController
     end
   end
 
+  def show
+    @tweet = Tweet.find(params[:id])
+    @comments = @tweet.comments.includes(:user)
+
+  end
+
   private
     def tweet_params
       params.permit(:image, :text)
